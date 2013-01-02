@@ -11,7 +11,8 @@ development:
   adapter: mysql2
   encoding: utf8
   database: sample_app_development
-  host: localhost
+  host: 192.168.0.27
+  port: 3306
   pool: 5
   username: root
   password: admin 
@@ -23,7 +24,8 @@ test:
   adapter: mysql2
   encoding: utf8
   database: sample_app_test
-  host: localhost
+  host: 192.168.0.27
+  port: 3306
   pool: 5
   username: root
   password: admin
@@ -37,7 +39,8 @@ production:
   adapter: mysql2
   encoding: utf8
   database: sample_app_production
-  host: localhost
+  host: 192.168.0.27
+  port: 3306
   pool: 5
   username: root
   password: admin
