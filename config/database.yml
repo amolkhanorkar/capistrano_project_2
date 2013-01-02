@@ -36,7 +36,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: mysql-50b37
+  database: sample_app_production
   host: localhost
   pool: 5
   username: root
