@@ -72,24 +72,15 @@ Installing RDoc documentation for capistrano-2.13.5...
        Before database Creation & Migration databses in mysql
        	Edit config/database.yml
 	development:
-
   		adapter: mysql2
-
-		  encoding: utf8
-
-		  reconnect: false
-
-		  host: localhost
-
-		  database: demo_app_development
-
-		  pool: 5
-
-		  username: root
-
-		  password:
-  password
-		  socket: /var/run/mysqld/mysqld.sock
+		encoding: utf8
+		reconnect: false
+		host: localhost
+		database: demo_app_development
+		pool: 5
+		username: root
+		password: password
+		socket: /var/run/mysqld/mysqld.sock
 
 	# Warning: The database defined as "test" will be erased and
 
@@ -97,60 +88,61 @@ Installing RDoc documentation for capistrano-2.13.5...
 
 	# Do not set this db to the same as development or production.
 
-	test:
-
-		  adapter: mysql2
-
-		  encoding: utf8
-
-		  reconnect: false
-
-		  host: localhost
-
-		  database: demo_app_test
-
-		  pool: 5
-
-		  username: root
-
-		  password:
-
-		  socket: /var/run/mysqld/mysqld.sock
+		test:
+		adapter: mysql2
+		encoding: utf8
+		reconnect: false
+		host: localhost
+		database: demo_app_test
+		pool: 5
+		username: root
+		password: password
+		socket: /var/run/mysqld/mysqld.sock
 
 
 	**Same for Production environment**
 
 	Before database migration create databses in mysql
+	
 	$bundle exec rake db:create
 	
 	Now migrate database
+	
 	$ bundle exec rake db:migrate
 
 6) Test application locally
-	$ rails s                                         //In project root directory
 	
+	$ rails s                                         //In project root directory
 	open given url in browser
 	http://localhost:3000
+
 Deploy Application on server using capistrano
 
 1. We already done with the capistrano installation in Software installation section
 
 	Now capify your project
 	goto your project folder
+
 	$ cd /path to project directory/
+	
 	then,
+	
 	$ capify .
+	
 	This cmd creates Capfile & config/deploy.rb file
 
 2. Authorize mysql user & Allow remote login
 
 	login to your mysql
+	
 	$ mysql -u root -ppassword
 
 	apply privileges to user
+	
 	GRANT ALL PRIVILEGES ON 'databasename'.* TO 'mysqluser'@'%' WITH GRANT 	OPTION;
 	
 	change bind-address value of mysql configuration to your mysql database server
+	
 	$ sudo vim  /etc/mysql/my.cnf
 	.
 	.
@@ -160,6 +152,7 @@ Deploy Application on server using capistrano
 	:wq!
 
 	Change value of the host: attribute to your webserver in config/database.yml file
+	
 	$ vim config/database.yml
 
 	development:
@@ -220,6 +213,7 @@ Dont forget to restart/reload the mysql service
 	
 	
 	$vim /path ot project dir/config/deploy.rb
+	
 	set :application, "Deployment demo"
 	set :scm, 'git'
 	set :repository,  "https://github.com/lokesh-webonise/deployment_demo"
