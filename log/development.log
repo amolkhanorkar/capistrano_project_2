@@ -54265,3 +54265,207 @@ Mysql2::Error (Access denied for user 'root'@'amol-desktop.local' (using passwor
   Rendered /home/webonise/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
   Rendered /home/webonise/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.3ms)
 >>>>>>> master
+
+
+Started GET "/" for 127.0.0.1 at 2013-01-03 12:05:37 +0530
+Connecting to database specified by database.yml
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`remember_token` IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`remember_token` IS NULL LIMIT 1
+  Rendered static_pages/home.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 464ms (Views: 380.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/custum.css?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /custum.css - 200 OK (27ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /sessions.css - 200 OK (1ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /static_pages.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /jquery.js - 200 OK (47ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /users.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /jquery_ujs.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-transition.js - 200 OK (63ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-affix.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-alert.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-button.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-carousel.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-collapse.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:38 +0530
+Served asset /bootstrap-dropdown.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-modal.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-scrollspy.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-tab.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-popover.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-tooltip.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap-typeahead.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /bootstrap.js - 200 OK (19ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /sessions.js - 200 OK (1ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /static_pages.js - 200 OK (2ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-01-03 12:05:39 +0530
+Served asset /users.js - 200 OK (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Connecting to database specified by database.yml
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`remember_token` IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`remember_token` IS NULL LIMIT 1
+  Rendered static_pages/home.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 139ms (Views: 103.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/custum.css?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /custum.css - 304 Not Modified (29ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /sessions.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /users.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /static_pages.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-transition.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-affix.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-alert.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-button.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-carousel.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-collapse.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-dropdown.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-modal.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-tab.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-tooltip.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-popover.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap-typeahead.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /bootstrap.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /sessions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /static_pages.js - 304 Not Modified (27ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
+Served asset /users.js - 304 Not Modified (1ms)
