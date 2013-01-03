@@ -39,7 +39,10 @@ Prerequisites :
 
 5. Installing Apache Server
 	To install apache server issue following command
-	$ sudo aptget install apache2
+	$ sudo apt-get install apache2
+	
+	
+	
 =========================================================================================================
 
 1) Create one ROR application and make it able to work simply with Github repository.
