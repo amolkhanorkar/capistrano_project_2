@@ -183,11 +183,8 @@ Deploy Application on server using capistrano
 		  socket: /var/run/mysqld/mysqld.sock
 
 
-	# Warning: The database defined as "test" will be erased and
-
-	# re-generated from your development database when you run "rake".
-
-	# Do not set this db to the same as development or production.
+Warning: The database defined as "test" will be erased and re-generated from your development database when you run "rake".
+Do not set this db to the same as development or production.
 
 	test:
 
@@ -209,69 +206,54 @@ Deploy Application on server using capistrano
 
 		  socket: /var/run/mysqld/mysqld.sock
 
-
+	:wq!
 
 *** same for production environment*****
-:wq!
 
-Don't forget to restart/reload the mysql service
+
+Dont forget to restart/reload the mysql service
+	
 	$ sudo /etc/init.d/mysql restart
 
 
 3. Writing deploy.rb file
 	
+	
 	$vim /path ot project dir/config/deploy.rb
 	set :application, "Deployment demo"
-
 	set :scm, 'git'
-
 	set :repository,  "https://github.com/lokesh-webonise/deployment_demo"
- 
-	set :branch, 'develop'
-                       #Repository branch
+ 	set :branch, 'develop'
+
+Repository branch
 
 
 	set :use_sudo, false
 
 
-	#Deployment directory on the server
+Deployment directory on the server
 
 	set :deploy_to, "/var/www/demo_app"
 
 	
 
-	#Server information
+Server information
 
 	role :web, "192.168.0.27"                   # Your HTTP server, Apache/etc
 
 	role :app, "192.168.0.27"                    # This may be the same as your `Web` server
 
-	role :db, “192.168.0.29”, primary => true     # Your Database server
-	# if you want to clean up old releases on each deploy uncomment this:
+	role :db, “192.168.0.29”, primary => true     # Your Database server if you want to clean up old releases on each deploy uncomment this:
 
 	 after "deploy:restart", "deploy:cleanup"
-
-
-
-
-	after "deploy:update_code", "assets:create_symlink"
-
-
-	after "deploy:restart", “deploy:clean”  #Maintain recent five release
-
-	namespace :assets do
-
-
-
-	     task :create_symlink do
-
-		   run "ln -s #{shared_path}/assets #{latest_release}/public/assets"
-
-		   run "cd #{latest_release} && bundle exec rake assets:precompile"
-
-  		   run "ln -s #{shared_path}/config/database.yml 	             #{current_path}/configdatabase.yml"
-
-	      end
+	 after "deploy:update_code", "assets:create_symlink"
+	 after "deploy:restart", “deploy:clean”  #Maintain recent five release
+         namespace :assets do
+         task :create_symlink do
+	 run "ln -s #{shared_path}/assets #{latest_release}/public/assets"
+	 run "cd #{latest_release} && bundle exec rake assets:precompile"
+	 run "ln -s #{shared_path}/config/database.yml #{current_path}/configdatabase.yml"
+	 end
 	end
 
 	:wq!
@@ -281,13 +263,15 @@ Don't forget to restart/reload the mysql service
 4. Deploy on server & configure virtualhost in apache
 	
 	 To deploy issue following command
-	 $ cap deploy
+	 
+	$ cap deploy
 
 	Note: If above command generates any error, troubleshoot it & reploy
 
 5. Configure virtual host
 
 	Before that make sure Virtual hosting is enabled, To do this
+	
 	$ vim /etc/apache2/ports.conf
 		NameVirtualHost  192.168.0.27
 	.
@@ -295,6 +279,7 @@ Don't forget to restart/reload the mysql service
 	:wq!
 
 	Write VirtualHost Block
+	
 	$ vim /etc/apache2/httpd.conf
 		<VirtualHost 192.168.0.27:80>
 			ServerName local.sampleapp.com
@@ -306,7 +291,7 @@ Don't forget to restart/reload the mysql service
          
 6.  Restart Apache2
 
-    $sudo /etc/init.d/apache2 restart
+    	$sudo /etc/init.d/apache2 restart
     
     Enjoy the Application !!
     
