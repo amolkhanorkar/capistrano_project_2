@@ -1,5 +1,6 @@
 set :application, "Sample_App"
 set :repository,  "https://github.com/amolkhanorkar-webonise/capistrano_project_2"
+set :scm, 'git'
 set :branch, 'develop'
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -12,7 +13,7 @@ role :db,  "192.168.0.27", :primary => true # This is where Rails migrations wil
 
 set :deploy_to, "/var/www/capistrano_project_2"
 set :use_sudo, false
-
+set :normalize_asset_timestamps, false
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
