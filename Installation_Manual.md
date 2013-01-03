@@ -27,23 +27,28 @@ Prerequisites :
 
 2. Rails Installation
 	To install rails issue following command
+
 	$ gem install rails
 
 3. Installing Capistrano
 	To install Capistrano
-	$ gem install Capistrano
+	
+        $ gem install Capistrano
 
 4. Installing & Configuring Mysql
 	To install mysql issue following command
+	
 	$ apt-get install mysql-server mysql-client
 
 5. Installing Apache Server
 	To install apache server issue following command
+	
 	$ sudo apt-get install apache2
 	
 	
 	
 =========================================================================================================
+Installation Procedure:
 
 1) Create one ROR application and make it able to work simply with Github repository.
 
@@ -55,7 +60,8 @@ Prerequisites :
 
 I am installed capistrano-2.13.5, it is gem install.
 
-$ gem install capistrano
+	$ gem install capistrano
+
 Successfully installed capistrano-2.13.5
 1 gem installed
 Installing ri documentation for capistrano-2.13.5...
