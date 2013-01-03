@@ -54502,3 +54502,1755 @@ Migrating to CreateRelationships (20121224123237)
   [1m[35m (164.9ms)[0m  CREATE UNIQUE INDEX `index_relationships_on_follower_id_and_followed_id` ON `relationships` (`follower_id`, `followed_id`)
   [1m[36m (24.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121224123237')[0m
   [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+  [1m[36m (121.7ms)[0m  [1mDROP DATABASE IF EXISTS `sample_app_development`[0m
+  [1m[35m (0.5ms)[0m  DROP DATABASE IF EXISTS `sample_app_test`
+  [1m[36m (0.2ms)[0m  [1mCREATE DATABASE `sample_app_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (0.2ms)[0m  CREATE DATABASE `sample_app_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (80.8ms)[0m  [1mCREATE TABLE `microposts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `content` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (165.0ms)[0m  CREATE INDEX `index_microposts_on_user_id_and_created_at` ON `microposts` (`user_id`, `created_at`)
+  [1m[36m (73.8ms)[0m  [1mCREATE TABLE `relationships` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `follower_id` int(11), `followed_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (165.1ms)[0m  CREATE INDEX `index_relationships_on_followed_id` ON `relationships` (`followed_id`)
+  [1m[36m (166.1ms)[0m  [1mCREATE UNIQUE INDEX `index_relationships_on_follower_id_and_followed_id` ON `relationships` (`follower_id`, `followed_id`)[0m
+  [1m[35m (164.8ms)[0m  CREATE INDEX `index_relationships_on_follower_id` ON `relationships` (`follower_id`)
+  [1m[36m (77.9ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `password_digest` varchar(255), `remember_token` varchar(255), `admin` tinyint(1) DEFAULT 0) ENGINE=InnoDB[0m
+  [1m[35m (164.8ms)[0m  CREATE INDEX `index_users_on_remember_token` ON `users` (`remember_token`)
+  [1m[36m (74.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (145.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (23.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20121224123237')
+  [1m[36m (24.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20121220132552')[0m
+  [1m[35m (24.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20121221134223')
+  [1m[36m (23.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20121220130439')[0m
+  [1m[35m (25.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20121220110311')
+  [1m[36m (24.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20121224080712')[0m
+  [1m[35m (25.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20121221105202')
+  [1m[36m (1.7ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateUsers (20121220110311)
+Migrating to AddIndexToUsersEmail (20121220130439)
+Migrating to AddPasswordDigestToUsers (20121220132552)
+Migrating to AddRememberTokenToUsers (20121221105202)
+Migrating to AddAdminToUsers (20121221134223)
+Migrating to CreateMicroposts (20121224080712)
+Migrating to CreateRelationships (20121224123237)
+  [1m[35m (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:44', 'example@railstutorial.org', 'Example User', '$2a$10$kGjZFWLMOf3br83DtJis0.hQ1q2uP4OyB4vokoN2hA4tW4LMdbgqO', 'A1NxyI-4laB70Fg77yYWlg', '2013-01-03 08:06:44')[0m
+  [1m[35m (43.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE `users` SET `admin` = 1, `remember_token` = 'PDJfMaIm2EO1xZBeYLGGDg', `updated_at` = '2013-01-03 08:06:44' WHERE `users`.`id` = 1
+  [1m[36m (31.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` LIMIT 6
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maiores incidunt pariatur quis error aperiam odit cum sint similique.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (40.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Esse commodi maxime autem consequuntur.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (21.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tempore consequatur et alias voluptatem.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestiae voluptatem officia reprehenderit aut quis.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non est delectus sapiente temporibus quam impedit.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptas quia natus veniam amet optio et omnis.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur et quia aut officiis minus.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('At voluptas veritatis sed enim nostrum et.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (22.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eaque numquam corrupti quidem rerum suscipit voluptates ab commodi.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aut enim temporibus doloribus adipisci quaerat et et.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et nobis expedita quae sed occaecati illum laborum velit.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste rerum ullam voluptates rem quidem optio.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Accusamus eligendi dolorem eveniet quo quis quae laborum qui.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sunt nobis in explicabo atque perspiciatis ut dolor.', '2013-01-03 08:06:44', '2013-01-03 08:06:44', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia illum corrupti quae ipsam excepturi voluptatem cum a consequuntur.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (63.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rem qui repellendus tempore ut earum rerum.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Numquam unde ipsam itaque et sit assumenda quam ut qui.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nihil quod suscipit eum ipsa eaque cumque sapiente asperiores rerum.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Dolore molestias doloribus fugiat quia quod.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aut quaerat voluptate natus et.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ad repudiandae sint iure aut fugiat odio omnis facere quis.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Deserunt perspiciatis culpa minima odio enim delectus sequi.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptas incidunt consequatur iste rerum maiores explicabo.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptas omnis maxime perspiciatis placeat rerum mollitia et.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (48.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Impedit qui quos suscipit alias et sint unde ipsa quibusdam.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestiae velit illo nulla quasi.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est velit omnis perferendis commodi.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum omnis libero quos repellat autem atque est omnis.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Totam et in corporis commodi nam optio ut vel.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae maiores ipsam ducimus in ea neque eum.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum sunt quis minima iure.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus laudantium sunt ut reprehenderit qui similique sed officia.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestiae expedita possimus sit sapiente nobis ipsum qui.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id laborum consequatur velit magni sint est.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Numquam est aut id ipsum soluta voluptatem eos voluptatem veritatis.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et sed voluptatem facere tempore qui non tenetur alias velit.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tempore nesciunt deleniti est rerum aut.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Praesentium qui enim ullam provident.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nostrum repellat exercitationem natus et nisi ut voluptatem illum.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aut officia mollitia voluptate ex esse molestias ut quas sint.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est nemo eum explicabo molestiae quae rerum ea odio.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Explicabo officiis nam dignissimos harum reprehenderit.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem atque qui nulla aut nostrum reiciendis sint.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Commodi dolor rerum consequatur nam expedita.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (31.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('At quod enim nemo et veniam voluptatem voluptatem ullam voluptas.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam consequatur natus esse error unde at.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Itaque perspiciatis officia porro fugit.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Corrupti facilis cupiditate occaecati numquam sunt voluptas quia quibusdam libero.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Debitis distinctio ipsum illum laboriosam ut deserunt maxime voluptas.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ipsa odit provident delectus omnis voluptate iste nisi.', '2013-01-03 08:06:45', '2013-01-03 08:06:45', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-1@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-1@railstutorial.org', 'Shirley Heidenreich Sr.', '$2a$10$TLolJO7Bks9thhwHkf9dJuyKmBF05PtNJFIAX1cDB59NAaQzMENvq', 'cteckdkqQtt5CE5GOUPLCg', '2013-01-03 08:06:46')[0m
+  [1m[35m (29.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-2@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-2@railstutorial.org', 'Kristy Halvorson IV', '$2a$10$v.4iaMJ6.cFbOgYHNykzMuRZRKRfgKDidbFrN3LKnv.vOM3.At3/S', 'hpUOzZ9OvvWtrALKKO_R4Q', '2013-01-03 08:06:46')[0m
+  [1m[35m (27.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-3@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-3@railstutorial.org', 'Sidney Wiza', '$2a$10$Nc.IrSdFcwn39wwynLZwZec6rgztVeCyWN2izPI2p0XM5Nmm3AOsW', 'dDZsUp38JvRZbI5-oRNMVg', '2013-01-03 08:06:46')[0m
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-4@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-4@railstutorial.org', 'Lane Miller II', '$2a$10$woR0ASXDIhgofBiSwxn2U.625T42Zbk2FJHMuBpegSMzVfdVqcgcW', 'pN60TzlS1Y7p1ZsS7eui9g', '2013-01-03 08:06:46')[0m
+  [1m[35m (27.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-5@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-5@railstutorial.org', 'Jessika Miller Sr.', '$2a$10$9OKzjfV0P5k42zNXT3gTAOquQz7H1KuhEpIGSY3fgQIGBiRK20qDW', '_M-lQaE67g_OaYIkyiUBMg', '2013-01-03 08:06:46')[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-6@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-6@railstutorial.org', 'Emily Mitchell', '$2a$10$ymV2xIP7DBdrucRY2SEHRO9q/t.kNkfbAPe6TUyk.LQrGJCbpBJMa', '1QeBsAW2wsAHK-7Zffnyjw', '2013-01-03 08:06:46')[0m
+  [1m[35m (27.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-7@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-7@railstutorial.org', 'Cooper Smitham', '$2a$10$LXxGvi8z1pbxkDLw6DC8WukRyRDvPBABqaEVO6ra2mhnsmFysQuJm', 'dn1rfRE3TVngPln43c4rEQ', '2013-01-03 08:06:46')[0m
+  [1m[35m (28.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-8@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-8@railstutorial.org', 'Fritz Orn DVM', '$2a$10$73af9NLUaI.L8Ix.usxQH.IQfQ47NaIF9My9dgfqH2oxyvwQ9yfEm', 'hD814YimGTS3eL0znTl0gw', '2013-01-03 08:06:46')[0m
+  [1m[35m (29.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-9@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-9@railstutorial.org', 'Lila Hayes', '$2a$10$x.GfzmrP6OrLT8DpNYiGB.Kb3JX7yLi1YVeE4LlA6yVhJhqt44Zmy', 'fGF6sP_KkHOwRcKC7Gkf0A', '2013-01-03 08:06:46')[0m
+  [1m[35m (28.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-10@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:46', 'example-10@railstutorial.org', 'Dr. Ulices Mitchell', '$2a$10$4I/sHpmRh23N42xOHVN1LegxYUjXovd2dMNXxpKSCahl4Ndp73AkC', 'DPQVxsKFzPyenrO2qkRnug', '2013-01-03 08:06:46')[0m
+  [1m[35m (29.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-11@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-11@railstutorial.org', 'Mr. Chester Williamson', '$2a$10$SWBv9iFh/qTtF2gbIlU5fu1FApNPxQRaRv5FS0Q7Yc5pziC/2B3Xi', 'VtfuFDHtMN9W7KdyPlWR-w', '2013-01-03 08:06:47')[0m
+  [1m[35m (43.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-12@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-12@railstutorial.org', 'Magdalen Sipes', '$2a$10$oGaD9U8OLiExrhh9YvR1t.X4GsL/3/gwRQO5Eg1hRlRal66jlzldO', 'OPvkK3Y9xU5mm2POXboLYg', '2013-01-03 08:06:47')[0m
+  [1m[35m (28.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-13@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-13@railstutorial.org', 'Tiffany Boyer', '$2a$10$luEVWvlShh3F6m1e9EzloOuZtt5JozcO1n.Zh30bFuwQ5zyRKqFaW', 'ALfp_lUNakZh1JDGsd3FRw', '2013-01-03 08:06:47')[0m
+  [1m[35m (29.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-14@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-14@railstutorial.org', 'Clifford McCullough', '$2a$10$9TNaaL0bBfCcFB9iVRxcIuncs9vrXbuQT3G5A8gIfnByg1.qEeCvO', 'NJ3VtIO9HpBAlbCDZeNCWw', '2013-01-03 08:06:47')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-15@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-15@railstutorial.org', 'Dario Howell', '$2a$10$iI4e2zh48zIEV6aZdWsNw.rAmNDLHpsYzTEr3qFBhIe6ap0TdTnEu', 'EPK2Hk23oEfr7UJvhqX6EQ', '2013-01-03 08:06:47')[0m
+  [1m[35m (26.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-16@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-16@railstutorial.org', 'Mrs. Easton Kub', '$2a$10$AhFdIq1oR.rORp0Wj8Sj4epI/8EiZCqeXlfNVl25CDX4wJqG/zbS2', '0lYBKeNZiH6xr5NlYTZ5eA', '2013-01-03 08:06:47')[0m
+  [1m[35m (25.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-17@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-17@railstutorial.org', 'Ms. Baby Klein', '$2a$10$/r0tf2dkii3gHMQQjdManepk1bl0A9pFgmsy4tYpdP6TH1ZNUdjaS', 'Tx3rPxI_JRFodSM-Icn93g', '2013-01-03 08:06:47')[0m
+  [1m[35m (28.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-18@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-18@railstutorial.org', 'Dr. Jarrell Von', '$2a$10$HSWB0umnfJtDKB2vf8Uyt.z4V9dlUjcaFltwl047FPosGdYYqz9tW', 'xiOXCNwX6jXj63Q3qtmLvw', '2013-01-03 08:06:47')[0m
+  [1m[35m (27.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-19@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-19@railstutorial.org', 'Cierra Purdy', '$2a$10$93EhoNuv19pPm8E05SvxFe4E3Aj8U7kDHJ1jGnlX6AP.XYzlQSXR.', 'Wz_OC2K21X90G1aa_nOPYw', '2013-01-03 08:06:47')[0m
+  [1m[35m (27.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-20@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:47', 'example-20@railstutorial.org', 'Larissa Ankunding', '$2a$10$IG1b2ldm8X.oVyX8F52TCuXouLybFqpPqHO8HhAHSxHvsMTKbUX2W', 'BJyrkFHE21oOo_BfJVi-yw', '2013-01-03 08:06:47')[0m
+  [1m[35m (27.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-21@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-21@railstutorial.org', 'Emile Dietrich', '$2a$10$8u3Cploejiw1kCNMoqdvJ.O3eRlYMTbyL0/MOihIxbrA1X/oUyK8e', 'qFwrpA8XOqUbLc19fjl9fQ', '2013-01-03 08:06:48')[0m
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-22@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-22@railstutorial.org', 'Joel Littel', '$2a$10$83VxZHcxJTMM8Nxa7sdC2.a9/Hyxk8V24F19GXEtzXEopn39usRKm', '2v7r5vGssR5It5-GkYd9rQ', '2013-01-03 08:06:48')[0m
+  [1m[35m (26.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-23@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-23@railstutorial.org', 'Ms. Carolina Schmidt', '$2a$10$QRiKIhukWDd5G47YNptosucDtVWFozY64SDB6aSnZ10r1EkLnOYbe', '6HXuyLDAkwktnjHZSoNfkw', '2013-01-03 08:06:48')[0m
+  [1m[35m (29.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-24@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-24@railstutorial.org', 'Forrest Kuhlman', '$2a$10$.sFbeIPREOR1kUDi0yHtse265/6bZlpi.IenRBy42OmGjNx3pmkQK', 'xEE8TNe92YcSFp0LkPm_Fg', '2013-01-03 08:06:48')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-25@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-25@railstutorial.org', 'Jane Bailey', '$2a$10$j74pLNV7MnvGpDWsSk3Z2eYptQc2fIE65jFrH/gxHm9MBVshvv9ZC', '_8X59Ku3czS3S5ojicH25A', '2013-01-03 08:06:48')[0m
+  [1m[35m (24.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-26@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-26@railstutorial.org', 'Jaylin Bayer DVM', '$2a$10$h3uOfkVzVA0mdht5cn6bBOJxRiI5p59u4gY.0WsPdHIj2f.9/Yyka', 'ok6wMjyFzYuuyGrTn6KMCg', '2013-01-03 08:06:48')[0m
+  [1m[35m (29.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-27@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-27@railstutorial.org', 'Dr. Breanne Funk', '$2a$10$xwbIV2zHWcOl7SxNYtu.zOnkO.7Bj8iJLij0jP7yXsqMJaFiKMeIy', 'j9FuxDyn2bXeoAOy37gt6A', '2013-01-03 08:06:48')[0m
+  [1m[35m (25.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-28@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-28@railstutorial.org', 'Ms. Trystan Jerde', '$2a$10$zVZGSp.oGBdmjVv3HYsRm.lS0qfPcFYs/JaJSfuMdjR0AwaRFYpFi', 'unmyWGzLza-UasFjC844AQ', '2013-01-03 08:06:48')[0m
+  [1m[35m (37.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-29@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-29@railstutorial.org', 'Alayna Cruickshank', '$2a$10$ra.SIt4oI0wdAehMmvasSO2A.zhsrl9ljOWm75ypaEe47W4Lszepu', 'Z_-Sc9VfaB4o9QLFnCLn_Q', '2013-01-03 08:06:48')[0m
+  [1m[35m (25.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-30@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:48', 'example-30@railstutorial.org', 'Amelie Lebsack', '$2a$10$BYtP5EBt0j2GmGU701GibeUopJWnIOM7OqkCDU4k1yNDwkuqByeDi', 'Om0AkwuXl4nLDAVrrRaFsA', '2013-01-03 08:06:48')[0m
+  [1m[35m (28.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-31@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-31@railstutorial.org', 'Mr. Elise VonRueden', '$2a$10$a0av7FZKcXOBD0gmcIEa7eyShpSDBDUExQDBBQNenk/5S1mIaSyza', 'hvJZd9_W7WjjDsOMfF8ViA', '2013-01-03 08:06:49')[0m
+  [1m[35m (28.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-32@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-32@railstutorial.org', 'Candida Cummerata', '$2a$10$BsqymEmQA5NzaqngtwJs0ucJPnHAds4rLrHqTk/LqWygK6sMSWKwa', 'CWq3Nsgo-UwHElU7_LMkbg', '2013-01-03 08:06:49')[0m
+  [1m[35m (28.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-33@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-33@railstutorial.org', 'Dean Sauer', '$2a$10$2svMoJwuOVK7fkQreTnMYefe9KY6uakiuyOfUOpmdKxDOW2nkC3Y6', 'vtmlOsxRDpa6Gqwst2wIVw', '2013-01-03 08:06:49')[0m
+  [1m[35m (28.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-34@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-34@railstutorial.org', 'Howard Stokes', '$2a$10$tzeLZUfAsJQ0ieLsFUQSFOy3RKRuzMSkz.KboxbJ0dWCPI1IojfDe', 'lCpmzrbd_JXx7mR2pY3nIA', '2013-01-03 08:06:49')[0m
+  [1m[35m (25.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-35@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-35@railstutorial.org', 'Alford Daugherty', '$2a$10$7mzbuQIw/reTVUhbBEHST.ttX7pOLA/ljYyPuQFh5f2GVzUelQERW', '_Nu9GdcIb5hJb4ZEkogWLQ', '2013-01-03 08:06:49')[0m
+  [1m[35m (29.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-36@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-36@railstutorial.org', 'Beverly Thompson', '$2a$10$mSyGj4tAXK6X2ev4y5s9eOoaze3EDRYpXbDa/DlZhz.RUG7OlfdTC', '93-AWrSfnuyv6XBnvh_YSQ', '2013-01-03 08:06:49')[0m
+  [1m[35m (27.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-37@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-37@railstutorial.org', 'Wava Larkin', '$2a$10$Ponk66d7uqxBVlZA/lKQx.ROnkF3cH6YgQhEOwu0wV/jPGGU95Fry', '85CpYl6zKHe_sa9zuxFySw', '2013-01-03 08:06:49')[0m
+  [1m[35m (27.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-38@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-38@railstutorial.org', 'Susanna Kohler', '$2a$10$xbAOQBoB6PkNFzvM/6cSxODUqcank/Aw/S2RjYTDGqdCJZpmxSqXK', 'uMcEACyoJthdL02X3boCGw', '2013-01-03 08:06:49')[0m
+  [1m[35m (27.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-39@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:49', 'example-39@railstutorial.org', 'Dr. Winifred Spencer', '$2a$10$Td6Aw.KZDbVSpyF43onqbuumPxQiKQTJ/gSyKJH992ewAaKnTMBxi', 'AQNYDQvHUdLAEZ1JYbs6oQ', '2013-01-03 08:06:49')[0m
+  [1m[35m (28.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-40@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-40@railstutorial.org', 'Natalia Connelly', '$2a$10$Taie69fRpTRLyKOUCQUuYubFUUKiSRxFhIeU1PexNISXtYbINGZgq', '6_IP53TfiiDJqHvqXnWp7w', '2013-01-03 08:06:50')[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-41@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-41@railstutorial.org', 'Nakia Torp', '$2a$10$jshupQKZ907Q9r9uqQz0YOUDApZ0qIopGbPgr5hXOdY5QzS49wpMW', 'jGqD9v0Hfh8gZeOf7PzDaA', '2013-01-03 08:06:50')[0m
+  [1m[35m (28.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-42@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-42@railstutorial.org', 'Constance Murray Sr.', '$2a$10$YJgcGNnMRvGFJjnRzyFEGe1RZNfSvtDGa/woNstYZsUHpFlPpCOua', '6yxEVThzC1kR8I44JIMTUw', '2013-01-03 08:06:50')[0m
+  [1m[35m (28.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-43@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-43@railstutorial.org', 'Barry Cassin', '$2a$10$1auesv1KW/W.0O2XsPRxee.RzIRC4rQ5/Bk06fgu76xGpDsLWN6QC', 'sZiNv_LkBz-uC4LQW0OPeQ', '2013-01-03 08:06:50')[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-44@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-44@railstutorial.org', 'Samara Bernhard', '$2a$10$x0xYz4NtusMZhkn9t76VZe6eWbguyvH0DcIzMe4APss1MRMSu3JGa', 'iQwDaDNqc8q9DdA_yZTimA', '2013-01-03 08:06:50')[0m
+  [1m[35m (36.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-45@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-45@railstutorial.org', 'Katrine Stanton Sr.', '$2a$10$qY/Zk0jShLShj37onTZUIuS3gE5riVKyQvXFJqCXg1h7cDrEoPW/G', 'zaoYGBANEzIeLbiSw93nyg', '2013-01-03 08:06:50')[0m
+  [1m[35m (28.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-46@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-46@railstutorial.org', 'Edyth Rodriguez DDS', '$2a$10$MI.CkwLJ.oG4gcpS8wTS5OtdpqT6ir0pn.d0pT3UTEim/eS7c/a4m', '_KBB_uvv-LEUOX2QSPtqGQ', '2013-01-03 08:06:50')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-47@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-47@railstutorial.org', 'Ms. Kathryn Marquardt', '$2a$10$r8QfLArJ/He4QyNQZKMefOU1GD5Z6RSuF3V6r2ii9dhaBd1MtCyNe', 'dTLzEL7e8jKKS50bBPMU9w', '2013-01-03 08:06:50')[0m
+  [1m[35m (26.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-48@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-48@railstutorial.org', 'Jessie Towne', '$2a$10$HvbR8CaAVV96zOYh1L2wluGf4Kl8Dq590N2HGeDSnaw28s07MIAVO', '15t0H2xm-ipVgK811cXTMA', '2013-01-03 08:06:50')[0m
+  [1m[35m (26.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-49@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:50', 'example-49@railstutorial.org', 'Morris Powlowski I', '$2a$10$UPe6gMDBsawnGz0zCdEnZeTS2azmIDW5izEfj8G6WaZbkL8Q1MzFi', 'JB2KY1J0_0p21bOOy7JnQA', '2013-01-03 08:06:50')[0m
+  [1m[35m (28.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-50@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-50@railstutorial.org', 'Waldo Boyer', '$2a$10$jndX9D8Us/Osd3Il.Pn8RuNx7ZoXu.8oX3po/mJHua9CbdvFTCnzG', 'llIlACkSs-blH_69nL7pRg', '2013-01-03 08:06:51')[0m
+  [1m[35m (29.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-51@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-51@railstutorial.org', 'Keyon Altenwerth DVM', '$2a$10$t8ed.j4BEEdspqjSMIExYOYM8wISfKw2XT1GnDHMTBc8850OfeWDm', 'wtCOvWE_T9pVYXWHs_octw', '2013-01-03 08:06:51')[0m
+  [1m[35m (26.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-52@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-52@railstutorial.org', 'Deondre Halvorson III', '$2a$10$6L41c62.9pIkuw3JvEkP8.CD1ATp8I9EhZ7g4yLG7VIRyL79EsoOm', 'D1O7hKYhcP8Ul1vIRFzh4g', '2013-01-03 08:06:51')[0m
+  [1m[35m (27.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-53@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-53@railstutorial.org', 'Lavina Blanda', '$2a$10$woW6MwGdz5owrzNVEma.UevgmaS8Gev..EGp.2V3DBQJ7v/3QvSLO', 'qDQ2q4BpVwxylmc96Dnr1g', '2013-01-03 08:06:51')[0m
+  [1m[35m (24.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-54@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-54@railstutorial.org', 'Donald Bradtke', '$2a$10$OFyzMVmDWBwHtIwyCh22iOrZVokdKfGso/itVbSeoFlsbM9gKomvu', 'XqKYnZRa3LpKUzEw6Hye3w', '2013-01-03 08:06:51')[0m
+  [1m[35m (29.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-55@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-55@railstutorial.org', 'Darwin Rowe', '$2a$10$KlmiaR3JyRvMpBdPwgB.Zuv6JFfav5RoPbqAuiYlNLRKKmbRihetK', 'hVX2BYACA7h-fLFhXV0S2w', '2013-01-03 08:06:51')[0m
+  [1m[35m (28.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-56@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-56@railstutorial.org', 'Roderick Legros', '$2a$10$ijEnZuo1ieWG3rQnEUZS0uAR6MV0CaNLooFRbSOQwh.3YMVdT3nme', '9hjKlKpUxyYptINrFVr1gA', '2013-01-03 08:06:51')[0m
+  [1m[35m (25.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-57@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-57@railstutorial.org', 'Adalberto Beahan II', '$2a$10$tWfOq1PCcNP5MdXnjI2iteZcNlwa5rXU/OW68ModIR4PbFWblm5wS', 'A3kXzgJbvq6NBaw1YfnHKQ', '2013-01-03 08:06:51')[0m
+  [1m[35m (30.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-58@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-58@railstutorial.org', 'Dr. Jovany Yundt', '$2a$10$bisW0y3OOEngzx6f4VVK7e79kIyKp4llit9dhvM95gjT.8mXAu5DK', 'ns9bfRxd90FD-pF0O93Z5Q', '2013-01-03 08:06:51')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-59@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:51', 'example-59@railstutorial.org', 'Braxton Leuschke', '$2a$10$dZyrDWnd5wHV0KQB8HPf5Onk8Kl9umGq4jdCp3oaAQuUACZs9CO7a', 'vXDAUDx-9ilqorYsmiIfHQ', '2013-01-03 08:06:51')[0m
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-60@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-60@railstutorial.org', 'Mallie Altenwerth', '$2a$10$m6Mksy56dO1JMM8Sg4Kd9ec7slMLxFdynbSQrDwannMCAF01/YwrS', 'aPLV2Npr5nq3iF0bR9kFtw', '2013-01-03 08:06:52')[0m
+  [1m[35m (26.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-61@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-61@railstutorial.org', 'Dr. Brigitte Berge', '$2a$10$lbmJGdLIwV0q3HkbBfJy6uGMu072/Jw33w4sCikGfhhGrJXCPXSJW', 'gAiu1ulSpAHLHaKe1uIa2g', '2013-01-03 08:06:52')[0m
+  [1m[35m (28.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-62@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-62@railstutorial.org', 'Dan Langworth', '$2a$10$KrP9zZ9epGbdRz6z57VQsOeYk9s1G.RkvN3mQZlcKU98aNbL6pA1S', 'QU5LgLh_J7GvFTQh8WWSgQ', '2013-01-03 08:06:52')[0m
+  [1m[35m (28.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-63@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-63@railstutorial.org', 'Reese Yost', '$2a$10$lmlkDiQPhsP0PqmCBTi19.RnB2pBOZHU0XGedVCx/THrWqwesQn4q', 'g3XNLDAeyyLd_CPlKAd70w', '2013-01-03 08:06:52')[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-64@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-64@railstutorial.org', 'Leon Grimes', '$2a$10$INzbSK.cF4qAc8.JVrEOiOxGYku0qsxvFfPxX8bRozZZgWL66TITq', 'u9tDtKPpdvHcqXDsNQ_Jqw', '2013-01-03 08:06:52')[0m
+  [1m[35m (27.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-65@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-65@railstutorial.org', 'Ms. Maxine Oberbrunner', '$2a$10$T.WakPaP2FCKh5Wik0bXROVaqipfo22S3bFufPaV5CWV9k6l42C2q', '_SISQs__UaM2C9XwtAUNHQ', '2013-01-03 08:06:52')[0m
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-66@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-66@railstutorial.org', 'Amelie McClure', '$2a$10$MQNlM8EL1VZIrc9y3FIYXuEZsmhfZlFBpDklFgrhgEruk60o0S8ju', 'RWB06t4Y20jvZJoHhLNwtw', '2013-01-03 08:06:52')[0m
+  [1m[35m (26.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-67@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-67@railstutorial.org', 'Clinton Fay IV', '$2a$10$h10mEaXnO5R7g6QgpRGnYu81S7qVKmIJzbQJBmw7RgrIclJffE9JK', 'Acj5-iXlQbuA4Tthtr1OXQ', '2013-01-03 08:06:52')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-68@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-68@railstutorial.org', 'Gaetano Fadel', '$2a$10$GxtdRxmoJLvMY2kaJGWRGOp.PqZCtCz318gDXPOP0Fxf/.7x5dRzS', 'MK_cvoXIcKzCoWcyboWICQ', '2013-01-03 08:06:52')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-69@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:52', 'example-69@railstutorial.org', 'Kavon Stiedemann', '$2a$10$SXCDiDo/q4qVintbC3bSh.O/AzFpg6c7GxUei.EtH7Fjg2qJn2bci', 'tAhxjD7m9mpM6dUikVEanA', '2013-01-03 08:06:52')[0m
+  [1m[35m (27.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-70@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-70@railstutorial.org', 'Mrs. Hildegard Kerluke', '$2a$10$ggYCEENIojMJ5ImjEUlN.uC3ryvzvdH6.8rmaz7qY15gqjC29kndi', 'ldSbeBuPKpZUdcMMDAooFg', '2013-01-03 08:06:53')[0m
+  [1m[35m (28.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-71@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-71@railstutorial.org', 'Mr. Berniece Pacocha', '$2a$10$9nbFXdpU0nbrz3MsJSFSmuVY9HNsPTc.UXf48qihGO1fm0O6u0B/i', 'OufGvhrHR2zQBYYK03ZN5A', '2013-01-03 08:06:53')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-72@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-72@railstutorial.org', 'Lexi Miller PhD', '$2a$10$Z3ELhDYtfrIxZb9g5jg33OhtHY8qm76LcYnQyvi9i2HRd42qnryDO', '4bWnSb14Ox-LI8g7KiiMsA', '2013-01-03 08:06:53')[0m
+  [1m[35m (26.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-73@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-73@railstutorial.org', 'Dejon Larkin', '$2a$10$9Gz7.pKuFvqL0R9SgF1e..xFDxuer.oZ03Rm3fjxNcjSIddT3d6Di', 'CGM-bsPJzvKLhqM2yAGlaQ', '2013-01-03 08:06:53')[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-74@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-74@railstutorial.org', 'Ivory Pollich', '$2a$10$QadKt.ujtAjKmZd2HZh7PeBAff8STnWRBoNzDxaZKh8SvbPKsDjge', 'EGL-WH5acqT5YJktdjG0sQ', '2013-01-03 08:06:53')[0m
+  [1m[35m (26.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-75@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-75@railstutorial.org', 'Dr. Bennie Labadie', '$2a$10$8MWqwXhJpx5o/MQpxpDyruwxPuODrZQi2xIBVGDMrzQx3wRf3bUB6', 'el8unaVbrVpgRyUl6hRhQA', '2013-01-03 08:06:53')[0m
+  [1m[35m (27.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-76@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-76@railstutorial.org', 'Ms. Kenyatta Wiegand', '$2a$10$zPXIKZimcssxADyE0Xvclujje.8LsQI/C88YvZbJ3dx2lFE2j1yfa', 'g2VurXZ3XmRb4CrSBm7tcQ', '2013-01-03 08:06:53')[0m
+  [1m[35m (28.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-77@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-77@railstutorial.org', 'Sigrid Carter', '$2a$10$/cU6TWUcaCG.q6d8MZTlKuPxyPorHZV.GHsBWDisO7Q56oMN3nroe', 'ByayeeJdwpVxDAt4M7wuuQ', '2013-01-03 08:06:53')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-78@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-78@railstutorial.org', 'Isabel Senger Jr.', '$2a$10$ojcusQ9ohhovEp3m/EFHYObIlUvbvSrzGmklcq7KZSQQQlTbvskfG', 't3y1fQvseOUcVOLtbPC0kQ', '2013-01-03 08:06:53')[0m
+  [1m[35m (29.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-79@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:53', 'example-79@railstutorial.org', 'Clementine Wiza', '$2a$10$ppvkd1R/.msO6S/f8rEc1em/Qpgha7TPbDNSuDf.RrBfXwuFA3nku', 'LMuct49MOZft7jDJyH-NOA', '2013-01-03 08:06:53')[0m
+  [1m[35m (27.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-80@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-80@railstutorial.org', 'Pearl Herzog', '$2a$10$mT553QNGQLlvHaoBORo2KeCvAetDa7V8A7hkhNmc4Qj0EXWpjFzAC', 'ImnrgVOmg-xYI6oA42ZGAQ', '2013-01-03 08:06:54')[0m
+  [1m[35m (28.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-81@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-81@railstutorial.org', 'Tatyana DuBuque', '$2a$10$flO/ycMEwFG0zhuV52rkquBSCVg10bdZEe.3Mzy66MSzgPjSruuuG', 'SdWbYcSM4tDWPuxZ0Xt8Tw', '2013-01-03 08:06:54')[0m
+  [1m[35m (23.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-82@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-82@railstutorial.org', 'Frederik Wisoky V', '$2a$10$3sSj.wmqRrQEqQzyrilyMuJInesB6qWoAcSENsoZA7I/LzR6JXQKu', '8-GnEcx-RVY74YTz7p-a0A', '2013-01-03 08:06:54')[0m
+  [1m[35m (25.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-83@railstutorial.org' LIMIT 1
+  [1m[36mSQL (42.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-83@railstutorial.org', 'Mabelle Watsica', '$2a$10$HEJ9kaOnomYxOfyKPV64y.d1XAzpkgIKvPd1gvdpMYUp0yP/FtJnm', 'cn2dM8MgNZBkKA_r_YJu_w', '2013-01-03 08:06:54')[0m
+  [1m[35m (198.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-84@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-84@railstutorial.org', 'Cole Gleason', '$2a$10$sjrS4UNO..SuLu.PpigMzulZk8o7/Lr59HUUUC5XWLF8dIgAqshiO', 'D8IYJ8Dae8Izm5TI2uTBpA', '2013-01-03 08:06:54')[0m
+  [1m[35m (176.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-85@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:54', 'example-85@railstutorial.org', 'Ethelyn Bruen', '$2a$10$Qi/S4DcUM0Yv4qfJJQYI5uWMH9UTHkcpshlCFgqXRsnSiAjXXmWhe', 'LugTrLt_Pc95GgZv0EqpZw', '2013-01-03 08:06:54')[0m
+  [1m[35m (46.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-86@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-86@railstutorial.org', 'Sarina Corwin', '$2a$10$qoDpIV9zF6T.hRYNI40/bO4rLAWY5oJFlv9xKYMJWi2YF4M5lS5Y6', 'ZSU4dGHRW6vNcjMFw-ak8Q', '2013-01-03 08:06:55')[0m
+  [1m[35m (26.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-87@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-87@railstutorial.org', 'Loy Anderson', '$2a$10$/zIaWBjCbYDPCUR7c8mCd.CNzqoNVJullO7PA50bz08ALA1zmlbtS', 'O3dELKc_oSnTNrll_xuieg', '2013-01-03 08:06:55')[0m
+  [1m[35m (28.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-88@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-88@railstutorial.org', 'Zion Runte', '$2a$10$AbHGueEAoGSaX063SEZoX.ltCdUzgrEYcOW.ZVfTa/nGeiuo/qufG', 'RTTowHPXeZPl-QB7cE26zQ', '2013-01-03 08:06:55')[0m
+  [1m[35m (28.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-89@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-89@railstutorial.org', 'Mr. Dejon Schumm', '$2a$10$wyP9GVWVH3aMo5p8E9ED1O6XjODz.tSspWYnbX7QyPaI03CZvCOkS', 'sl9aiK0HCgKpkS2RnXWN7w', '2013-01-03 08:06:55')[0m
+  [1m[35m (27.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-90@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-90@railstutorial.org', 'Lauren Graham', '$2a$10$2jRlqe29gIFliDqvMVn/1.3kLd6x/1Tt5BuZGj2SdNGfDmSZ7YhvS', '8PIjYn1RN9zhaooX3W6gNg', '2013-01-03 08:06:55')[0m
+  [1m[35m (26.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-91@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-91@railstutorial.org', 'Miss Darwin Ebert', '$2a$10$goddagL.59JHn90vcScK3und9eqxMPfGqy6ukwo7EnqSBnrhClnHy', 'preanzbsm2JgVcd7VVnQjA', '2013-01-03 08:06:55')[0m
+  [1m[35m (24.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-92@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-92@railstutorial.org', 'Tania Wolf', '$2a$10$jfZTrgQBxwr9e9fR.6uTU.wtCzK8mhlovikIbJs0LMDD/R5ky3BIm', '275ISggkHHf5zFNGgsKI4g', '2013-01-03 08:06:55')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-93@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-93@railstutorial.org', 'Stanley Gutmann', '$2a$10$qJAK1Oe8DJFlJpraMyENdOz72gH6YGmGG4H1ZO2KTmPrOJ.CCvYve', 'G_mGJq5xBTblmKPDqRDS_g', '2013-01-03 08:06:55')[0m
+  [1m[35m (27.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-94@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-94@railstutorial.org', 'Elisabeth Kunde', '$2a$10$C.X0QmH/hWYEwPKtOI.F0e/O.d4EzKcFENsTKDw5/nBndjTgZtueW', 'm_2StNgsap198YLc-70Jvw', '2013-01-03 08:06:55')[0m
+  [1m[35m (27.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-95@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:55', 'example-95@railstutorial.org', 'Giovanny Abernathy', '$2a$10$tAOgl.BdfMAiRjDwIFaz8ejG2jMWVH0PJhI9zTR8Ve545jFCs.wKO', 'LEOTrKiCumHVQ1jZkqIE_g', '2013-01-03 08:06:55')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-96@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:56', 'example-96@railstutorial.org', 'Ms. Iliana Lebsack', '$2a$10$NuUc2CKnvAef7w2wCt4j1OM3bYaxldWPWxg44NwdyMN2dd5/7LIs2', 'hxYCzDRuiwkkqUEChbJ6sA', '2013-01-03 08:06:56')[0m
+  [1m[35m (24.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-97@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:56', 'example-97@railstutorial.org', 'Uriah Pfeffer', '$2a$10$ltSseB77LLBvjWD.wR11ru6129X89nn1Yh5oZAldFlwHVGSZLxm.2', 'duSptp29Eh98xNsh8WKNgg', '2013-01-03 08:06:56')[0m
+  [1m[35m (25.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-98@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:56', 'example-98@railstutorial.org', 'Mr. Dena Reichert', '$2a$10$QnKhGyAO1jVHf3cvn1aRF.pqKtgaRaC3Fvct0nVnUza0VP/04n5wu', '-6VA4g3wRwvDOqws4HnDDA', '2013-01-03 08:06:56')[0m
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = 'example-99@railstutorial.org' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`admin`, `created_at`, `email`, `name`, `password_digest`, `remember_token`, `updated_at`) VALUES (0, '2013-01-03 08:06:56', 'example-99@railstutorial.org', 'Mrs. Iva Wolff', '$2a$10$.ykndFjfZ5G6NZTJWDc/weF52rkUKK0uSYnAQv0axLfd4kV8Wiwby', 'yPc89oMwAa12gNWGaxunLA', '2013-01-03 08:06:56')[0m
+  [1m[35m (24.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` LIMIT 6[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 1)[0m
+  [1m[35m (29.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 2)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 3)[0m
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 4)
+  [1m[36m (22.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 5)[0m
+  [1m[35m (32.7ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Tenetur quasi et dignissimos quia eveniet est qui adipisci reprehenderit.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 6)
+  [1m[36m (40.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 1)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 2)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 3)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 4)
+  [1m[36m (24.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 5)[0m
+  [1m[35m (30.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum fugit culpa sint temporibus et qui et enim consequatur.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 6)
+  [1m[36m (21.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 1)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 2)
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 3)[0m
+  [1m[35m (21.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 4)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Earum sapiente et perferendis dolores.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 1)[0m
+  [1m[35m (20.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 2)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 3)[0m
+  [1m[35m (22.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 4)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:56', '2013-01-03 08:06:56', 5)[0m
+  [1m[35m (49.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Inventore reprehenderit et est vero.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (27.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (30.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (68.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (21.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Maxime sint facilis accusamus in aliquid.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Neque aut sit eaque omnis.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (21.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quidem neque consequatur molestiae id odio debitis omnis ut.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (21.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Odit ea suscipit dolor velit.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (21.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quia quis nemo quia aut aut pariatur odit earum.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 2)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 3)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 4)
+  [1m[36m (21.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Amet hic ipsum nesciunt iusto consequuntur animi.', '2013-01-03 08:06:57', '2013-01-03 08:06:57', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (21.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cupiditate consequuntur veniam ea aliquam.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (24.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (23.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Suscipit explicabo itaque beatae quis.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (22.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Saepe amet et et porro et sit est vitae doloremque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (21.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Enim provident ut dolor maiores earum ipsum voluptate.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quibusdam voluptate similique voluptatum atque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (21.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 4)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 5)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem suscipit placeat perspiciatis itaque.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 2)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:58', '2013-01-03 08:06:58', 3)[0m
+  [1m[35m (31.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (22.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Temporibus magni est error aut earum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Non exercitationem modi expedita ut qui deserunt dolorem qui iusto.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (21.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (22.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam nulla dicta fugiat repellat suscipit enim similique quo.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (23.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (21.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Id dolores qui culpa reiciendis impedit nesciunt aperiam voluptas provident.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (24.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptates facere nisi voluptas dolorem.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (21.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Natus libero ipsam voluptatem est voluptatem perspiciatis magni sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 2)
+  [1m[36m (23.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 3)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 5)[0m
+  [1m[35m (22.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut nesciunt quae eveniet autem tempora itaque sit nostrum.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:06:59', '2013-01-03 08:06:59', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (24.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Aperiam alias consequatur ducimus et facere veniam sunt.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (23.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Iste delectus qui perspiciatis ipsam consequatur aperiam.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Cum et libero repellat incidunt et rem ut labore et.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et et ea fugiat accusantium ut eveniet culpa.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (31.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (21.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Mollitia quo quaerat in animi molestiae qui quisquam fugit provident.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 4)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 5)[0m
+  [1m[35m (22.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Blanditiis repellendus saepe ipsa dicta rerum quia quaerat in.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 6)
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 1)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 2)
+  [1m[36m (25.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:00', '2013-01-03 08:07:00', 3)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis praesentium ullam cumque aspernatur est.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (22.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (22.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Animi fuga accusamus ut explicabo laborum ipsam est porro non.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (21.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Pariatur voluptatem molestias sed et sapiente possimus magni nihil sit.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (21.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Repudiandae quae perspiciatis assumenda et voluptatem ad sint aut.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (21.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ducimus quia porro laboriosam temporibus.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (111.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (21.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 4)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 5)[0m
+  [1m[35m (22.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Sapiente omnis nobis dignissimos quibusdam distinctio nihil maiores.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 6)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 1)[0m
+  [1m[35m (34.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 2)
+  [1m[36m (37.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:01', '2013-01-03 08:07:01', 3)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Et illum ullam eaque omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (21.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Rerum eveniet et libero odio voluptate dolor eius neque et.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (21.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Distinctio dignissimos velit sequi inventore voluptatibus aliquam.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (23.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (21.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (24.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Culpa distinctio autem qui et ea ipsa commodi dolor.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Omnis quod doloremque nisi consectetur ut nobis amet quaerat ex.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (21.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Eum totam pariatur quod ipsum omnis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 1)[0m
+  [1m[35m (21.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 2)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 3)[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 5)[0m
+  [1m[35m (22.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Est autem sit eum quis.', '2013-01-03 08:07:02', '2013-01-03 08:07:02', 6)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (22.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Labore earum sed dolorem deserunt et maiores iure minima.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (31.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (21.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Voluptatem voluptatem veniam vitae totam cum rem aut enim qui.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (21.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Nobis illum odit tenetur sequi laudantium repellendus ea sed placeat.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (22.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quisquam eius suscipit exercitationem commodi blanditiis quia et pariatur.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (21.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Ut et iusto asperiores cum porro molestiae commodi.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (21.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 4)
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 5)[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quo consequatur itaque similique et ratione.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 6)
+  [1m[36m (25.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 1)[0m
+  [1m[35m (23.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 2)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:03', '2013-01-03 08:07:03', 3)[0m
+  [1m[35m (22.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 4)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 5)[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Quis quasi aut quo eaque inventore corporis ea qui tempora.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 6)
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 1)[0m
+  [1m[35m (22.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 2)
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 3)[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 4)
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 5)[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `microposts` (`content`, `created_at`, `updated_at`, `user_id`) VALUES ('Molestias sint quia quasi qui qui.', '2013-01-03 08:07:04', '2013-01-03 08:07:04', 6)
+  [1m[36m (22.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.* FROM `users` 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 3, 1, '2013-01-03 08:07:04')
+  [1m[36m (29.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 4, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 5, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 6, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 7, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 8, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 9, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 10, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 11, 1, '2013-01-03 08:07:04')
+  [1m[36m (22.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 12, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 13, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 14, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 15, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 16, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 17, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 18, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 19, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 20, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 21, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 22, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 23, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 24, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 25, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 26, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 27, 1, '2013-01-03 08:07:04')
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 28, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 29, 1, '2013-01-03 08:07:04')
+  [1m[36m (22.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 30, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 31, 1, '2013-01-03 08:07:04')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:04', 32, 1, '2013-01-03 08:07:04')[0m
+  [1m[35m (23.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (100.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 33, 1, '2013-01-03 08:07:05')
+  [1m[36m (173.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (65.8ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 34, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (33.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (23.5ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 35, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 36, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (47.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 37, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 38, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 39, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 40, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 41, 1, '2013-01-03 08:07:05')
+  [1m[36m (25.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 42, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 43, 1, '2013-01-03 08:07:05')
+  [1m[36m (22.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 44, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 45, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 46, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 47, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 48, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 49, 1, '2013-01-03 08:07:05')
+  [1m[36m (25.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 50, 1, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 51, 1, '2013-01-03 08:07:05')
+  [1m[36m (23.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 1, 4, '2013-01-03 08:07:05')[0m
+  [1m[35m (21.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 1, 5, '2013-01-03 08:07:05')
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 1, 6, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 1, 7, '2013-01-03 08:07:05')
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:05', 1, 8, '2013-01-03 08:07:05')[0m
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 9, '2013-01-03 08:07:06')
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 10, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 11, '2013-01-03 08:07:06')
+  [1m[36m (27.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 12, '2013-01-03 08:07:06')[0m
+  [1m[35m (37.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 13, '2013-01-03 08:07:06')
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 14, '2013-01-03 08:07:06')[0m
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 15, '2013-01-03 08:07:06')
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 16, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 17, '2013-01-03 08:07:06')
+  [1m[36m (30.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 18, '2013-01-03 08:07:06')[0m
+  [1m[35m (41.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 19, '2013-01-03 08:07:06')
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 20, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 21, '2013-01-03 08:07:06')
+  [1m[36m (23.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 22, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 23, '2013-01-03 08:07:06')
+  [1m[36m (21.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 24, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 25, '2013-01-03 08:07:06')
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 26, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 27, '2013-01-03 08:07:06')
+  [1m[36m (22.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 28, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 29, '2013-01-03 08:07:06')
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 30, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 31, '2013-01-03 08:07:06')
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 32, '2013-01-03 08:07:06')[0m
+  [1m[35m (21.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 33, '2013-01-03 08:07:06')
+  [1m[36m (22.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 34, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 35, '2013-01-03 08:07:06')
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 36, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 37, '2013-01-03 08:07:06')
+  [1m[36m (22.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 38, '2013-01-03 08:07:06')[0m
+  [1m[35m (100.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 39, '2013-01-03 08:07:06')
+  [1m[36m (22.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 40, '2013-01-03 08:07:06')[0m
+  [1m[35m (22.6ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `relationships` (`created_at`, `followed_id`, `follower_id`, `updated_at`) VALUES ('2013-01-03 08:07:06', 1, 41, '2013-01-03 08:07:06')
+  [1m[36m (22.9ms)[0m  [1mCOMMIT[0m
