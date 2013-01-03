@@ -54469,3 +54469,36 @@ Served asset /static_pages.js - 304 Not Modified (27ms)
 
 Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-01-03 12:06:12 +0530
 Served asset /users.js - 304 Not Modified (1ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (96.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (154.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (1.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateUsers (20121220110311)
+  [1m[35m (93.5ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (24.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121220110311')[0m
+Migrating to AddIndexToUsersEmail (20121220130439)
+  [1m[35m (24.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121220130439')
+Migrating to AddPasswordDigestToUsers (20121220132552)
+  [1m[36m (149.8ms)[0m  [1mALTER TABLE `users` ADD `password_digest` varchar(255)[0m
+  [1m[35m (24.8ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121220132552')
+Migrating to AddRememberTokenToUsers (20121221105202)
+  [1m[36m (237.4ms)[0m  [1mALTER TABLE `users` ADD `remember_token` varchar(255)[0m
+  [1m[35m (158.7ms)[0m  CREATE INDEX `index_users_on_remember_token` ON `users` (`remember_token`)
+  [1m[36m (24.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121221105202')[0m
+Migrating to AddAdminToUsers (20121221134223)
+  [1m[35m (154.1ms)[0m  ALTER TABLE `users` ADD `admin` tinyint(1) DEFAULT 0
+  [1m[36m (24.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121221134223')[0m
+Migrating to CreateMicroposts (20121224080712)
+  [1m[35m (102.8ms)[0m  CREATE TABLE `microposts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `content` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (167.4ms)[0m  [1mCREATE INDEX `index_microposts_on_user_id_and_created_at` ON `microposts` (`user_id`, `created_at`)[0m
+  [1m[35m (24.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121224080712')
+Migrating to CreateRelationships (20121224123237)
+  [1m[36m (60.6ms)[0m  [1mCREATE TABLE `relationships` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `follower_id` int(11), `followed_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (153.0ms)[0m  CREATE INDEX `index_relationships_on_follower_id` ON `relationships` (`follower_id`)
+  [1m[36m (166.2ms)[0m  [1mCREATE INDEX `index_relationships_on_followed_id` ON `relationships` (`followed_id`)[0m
+  [1m[35m (164.9ms)[0m  CREATE UNIQUE INDEX `index_relationships_on_follower_id_and_followed_id` ON `relationships` (`follower_id`, `followed_id`)
+  [1m[36m (24.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121224123237')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
