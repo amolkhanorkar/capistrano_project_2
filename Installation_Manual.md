@@ -146,11 +146,11 @@ This cmd creates Capfile & config/deploy.rb file
 
 2. Authorize mysql user & Allow remote login
 
-login to your mysql
+        login to your mysql
 	
 	$ mysql -u root -ppassword
 
-apply privileges to user
+        apply privileges to user
 	
 	GRANT ALL PRIVILEGES ON 'databasename'.* TO 'mysqluser'@'%' WITH GRANT 	OPTION;
 	
