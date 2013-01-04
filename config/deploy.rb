@@ -19,12 +19,22 @@ set :normalize_asset_timestamps, false
 # after "deploy:restart", "deploy:cleanup"
 
 # if you're still using the script/reaper helper you will need
-namespace :deploy do
-  desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
-  end
-end
+
+before :deploy, 'mysql:backup'
+namespace :mysql do
+  desc "performs a backup (using mysqldump)"
+  task :backup, :roles => :db, :only => { :primary => true } do
+   filename = "dump.#{Time.now.strftime '%Y%m%dT%:%H%M%S'}.sql"
+    run "mysqldump -uroot -padmin smaple_app_development > /tmp/#{filename}"
+   end
+end 	  
+
+#namespace :deploy do
+ # desc "Symlinks the database.yml"
+  #task :symlink_db, :roles => :app do
+   # run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  #end
+#end
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
