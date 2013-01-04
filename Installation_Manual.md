@@ -82,9 +82,17 @@ I am installed capistrano-2.13.5, it is gem install.
 		password: password
 		socket: /var/run/mysqld/mysqld.sock
 
+<<<<<<< HEAD
 Warning: The database defined as "test" will be erased and re-generated from your development database when you run "rake".
 
 Do not set this db to the same as development or production.
+=======
+	# Warning: The database defined as "test" will be erased and
+
+	# re-generated from your development database when you run "rake".
+
+	# Do not set this db to the same as development or production.
+>>>>>>> edcb9a36e259c410d88f489c2eafb8fa44773ebe
 
 		test:
 		adapter: mysql2
@@ -100,11 +108,19 @@ Do not set this db to the same as development or production.
 
 	**Same for Production environment**
 
+<<<<<<< HEAD
 Before database migration create databses in mysql
 	
 	$bundle exec rake db:create
 	
 Now migrate database
+=======
+	Before database migration create databses in mysql
+	
+	$bundle exec rake db:create
+	
+	Now migrate database
+>>>>>>> edcb9a36e259c410d88f489c2eafb8fa44773ebe
 	
 	$ bundle exec rake db:migrate
 
@@ -118,6 +134,7 @@ Deploy Application on server using capistrano
 
 1. We already done with the capistrano installation in Software installation section
 
+<<<<<<< HEAD
 Now capify your project
 goto your project folder
 
@@ -140,16 +157,44 @@ apply privileges to user
 	GRANT ALL PRIVILEGES ON 'databasename'.* TO 'mysqluser'@'%' WITH GRANT 	OPTION;
 	
 change bind-address value of mysql configuration to your mysql database server
+=======
+	Now capify your project
+	goto your project folder
+
+	$ cd /path to project directory/
+	
+	then,
+	
+	$ capify .
+	
+	This cmd creates Capfile & config/deploy.rb file
+
+2. Authorize mysql user & Allow remote login
+
+	login to your mysql
+	
+	$ mysql -u root -ppassword
+
+	apply privileges to user
+	
+	GRANT ALL PRIVILEGES ON 'databasename'.* TO 'mysqluser'@'%' WITH GRANT 	OPTION;
+	
+	change bind-address value of mysql configuration to your mysql database server
+>>>>>>> edcb9a36e259c410d88f489c2eafb8fa44773ebe
 	
 	$ sudo vim  /etc/mysql/my.cnf
 	.
 	.
-	bind-address = 192.168.0.29                                       //Your database server ip
+	bind-address = 192.168.0.27                                      //Your database server ip
 	.
 	.
 	:wq!
 
+<<<<<<< HEAD
 Change value of the host: attribute to your webserver in config/database.yml file
+=======
+	Change value of the host: attribute to your webserver in config/database.yml file
+>>>>>>> edcb9a36e259c410d88f489c2eafb8fa44773ebe
 	
 	$ vim config/database.yml
 
@@ -170,7 +215,7 @@ Do not set this db to the same as development or production.
 
 	test:
 		  adapter: mysql2
-		  encoding: utf8		 
+		  encoding: utf8 
 		  reconnect: false
 		  host: 192.168.0.29                                  //Database server ip
 		  database: demo_app_test
