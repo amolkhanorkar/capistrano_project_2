@@ -29,12 +29,12 @@ namespace :mysql do
    end
 end 	  
 
-#namespace :deploy do
- # desc "Symlinks the database.yml"
-  #task :symlink_db, :roles => :app do
-   # run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
-  #end
-#end
+namespace :deploy do
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+end
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
