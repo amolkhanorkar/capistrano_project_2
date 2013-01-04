@@ -25,7 +25,7 @@ namespace :mysql do
   desc "performs a backup (using mysqldump)"
   task :backup, :roles => :db, :only => { :primary => true } do
    filename = "dump.#{Time.now.strftime '%Y%m%dT%:%H%M%S'}.sql"
-    run "mysqldump -uroot -padmin smaple_app_development > /tmp/#{filename}"
+    run "mysqldump -uroot -padmin sample_app_development > /tmp/#{filename}"
    end
 end 	  
 
