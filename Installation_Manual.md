@@ -185,11 +185,11 @@ Change value of the host: attribute to your webserver in config/database.yml fil
 		  adapter: mysql2
 		  encoding: utf8
 		  reconnect: false
-		  host: 192.168.0.29                              //Database server ip
-		  database: demo_app_development
+		  host: 192.168.0.27                              //Database server ip
+		  database: sample_app_development
 		  pool: 5
 		  username: root
-		  password: password
+		  password: admin
 		  socket: /var/run/mysqld/mysqld.sock
 
 
@@ -200,11 +200,11 @@ Do not set this db to the same as development or production.
 		  adapter: mysql2
 		  encoding: utf8 
 		  reconnect: false
-		  host: 192.168.0.29                                  //Database server ip
-		  database: demo_app_test
+		  host: 192.168.0.27                                  //Database server ip
+		  database: sample_app_test
 		  pool: 5
 		  username: root
-		  password:
+		  password: admin
 		  socket: /var/run/mysqld/mysqld.sock
 
 	***** same for production environment*****
