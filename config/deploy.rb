@@ -26,6 +26,7 @@ namespace :mysql do
   task :backup, :roles => :db, :only => { :primary => true } do
    filename = "dump.#{Time.now.strftime'%d-%m-%Y@%T'}.sql"
     run "mysqldump -uroot -padmin sample_app_development > /tmp/Backup_capistrano_project_2/#{filename}"
+    run "tar -cvzP /tmp/Backup_capistrano_project_2/#{filename} -f /tmp/tar_Backup_capistrano_project_2/#{filename}#{filename}.tar.gz"
    end
 end 	  
 
