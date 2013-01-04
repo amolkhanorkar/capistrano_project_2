@@ -2,6 +2,9 @@ set :application, "Sample_App"
 set :repository,  "https://github.com/amolkhanorkar-webonise/capistrano_project_2"
 set :scm, 'git'
 set :branch, 'develop'
+set :db_password,  "admin"
+set :db_username,  "root"
+set :db_name,  "sample_app_development"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -25,7 +28,7 @@ namespace :mysql do
   desc "performs a backup (using mysqldump)"
   task :backup, :roles => :db, :only => { :primary => true } do
    filename = "dump.#{Time.now.strftime'%d-%m-%Y@%T'}.sql"
-    run "mysqldump -uroot -padmin sample_app_development > /tmp/Backup_capistrano_project_2/#{filename}"
+    run "mysqldump -u#{db_username} -p#{db_password} #{db_name} > /tmp/Backup_capistrano_project_2/#{filename}"
     run "tar -cvzP /tmp/Backup_capistrano_project_2/#{filename} -f /tmp/tar_Backup_capistrano_project_2/#{filename}.tar.gz"
    end
 end 	  
